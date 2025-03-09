@@ -1,26 +1,58 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>{{.Title}}</title>
-    <link rel="stylesheet" href="/static/css/style.css">
-</head>
-<body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/about">About</a></li>
-            </ul>
-        </nav>
-    </header>
+{{template "header" .}}
     
-    <main>
-        <h1>{{.Title}}</h1>
-        <p>{{.Content}}</p>
-    </main>
+<main>
+    <h1>{{.Title}}</h1>
+    <p>{{.Content}}</p>
     
-    <footer>
-        <p>&copy; 2023 My Go Web Server</p>
-    </footer>
-</body>
-</html>
+    <div class="dynamic-content">
+        <h2>Server-rendered Dynamic Content</h2>
+        <p>Current server time: <strong>{{.CurrentTime}}</strong></p>
+        
+        <h3>List of Items:</h3>
+        <ul>
+            {{range .Items}}
+                <li>{{.}}</li>
+            {{end}}
+        </ul>
+        
+        <h3>User Information:</h3>
+        {{with .User}}
+            <p>Name: {{.Name}}</p>
+            <p>Email: {{.Email}}</p>
+            <p>Role: {{.Role}}</p>
+        {{end}}
+    </div>
+    
+    <div class="ajax-content">
+        <h2>Client-side Dynamic Content</h2>
+        <p>Current time (updated every second): <strong id="live-time">Loading...</strong></p>
+        <button id="refresh-btn">Refresh Time</button>
+    </div>
+</main>
+
+<script>
+    // AJAX example to fetch time from server
+    function updateTime() {
+        $.ajax({
+            url: '/api/time',
+            method: 'GET',
+            success: function(data) {
+                $('#live-time').text(data.time);
+            },
+            error: function(err) {
+                console.error('Error fetching time:', err);
+            }
+        });
+    }
+    
+    // Update time immediately and then every second
+    updateTime();
+    setInterval(updateTime, 1000);
+    
+    // Manual refresh button
+    $('#refresh-btn').click(function() {
+        updateTime();
+    });
+</script>
+
+{{template "footer" .}}
