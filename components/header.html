@@ -1,22 +1,23 @@
 {{define "header"}}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Mist</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Website</title>
     <link rel="stylesheet" href="/static/css/style.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <header>
         <nav class="main-nav">
             <div class="nav-left">
-                <a href="/" class="logo"><img src="/static/images/logo-128.png" height="48"></a>
+                <a href="/" class="logo"><img src="/static/images/logo-40.png" alt="Logo"></a>
             </div>
             
             <div class="search-container">
                 <form action="/search" method="GET" class="search-form">
-                    <input type="text" name="q" placeholder="Search..." class="search-input">
+                    <input type="text" name="q" placeholder="Search skins..." class="search-input">
                     <button type="submit" class="search-button">
                         <i class="fas fa-search"></i>
                     </button>
@@ -25,17 +26,20 @@
             
             <div class="nav-right">
                 {{if .User}}
-                    <div class="user-info">
-                        <img src="{{.User.AvatarMedium}}" alt="{{.User.PersonaName}}" class="avatar">
-                        <span>{{.User.PersonaName}}</span>
-                        <a href="/logout" class="logout-btn">Logout</a>
-                    </div>
+                <div class="user-info">
+                    <img src="{{.User.AvatarMedium}}" alt="{{.User.PersonaName}}" class="avatar">
+                    <span>{{.User.PersonaName}}</span>
+                    <a href="/logout" class="logout-btn">Logout</a>
+                </div>
                 {{else}}
-                    <a href="/login" class="login-btn">
-                        <img src="/static/images/steam_login.png" alt="Login with Steam">
-                    </a>
+                <a href="/login" class="login-btn">
+                    <img src="/static/images/steam_login.png" alt="Login with Steam">
+                </a>
                 {{end}}
             </div>
         </nav>
     </header>
+    
+    <main class="container">
+        <!-- Content will go here -->
 {{end}}
