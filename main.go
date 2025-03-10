@@ -45,6 +45,8 @@ var templates = template.Must(template.ParseFiles(
 	filepath.Join("components", "home.html"),
 	filepath.Join("components", "login.html"),
 	filepath.Join("components", "search.html"),
+	filepath.Join("components", "terms.html"),
+	filepath.Join("components", "privacy.html"),
 ))
 
 // Update the homePage function to display user info if logged in
@@ -116,6 +118,41 @@ func getCurrentTime(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, `{"time": "%s"}`, time.Now().Format("2006-01-02 15:04:05"))
 }
 
+// Add these handler functions
+
+func termsHandler(w http.ResponseWriter, r *http.Request) {
+	user := auth.GetCurrentUser(r)
+
+	data := struct {
+		User *auth.SteamUser
+	}{
+		User: user,
+	}
+
+	err := templates.ExecuteTemplate(w, "terms.html", data)
+	if err != nil {
+		log.Printf("Template execution error: %v", err)
+		return
+	}
+}
+
+func privacyHandler(w http.ResponseWriter, r *http.Request) {
+	user := auth.GetCurrentUser(r)
+
+	data := struct {
+		User *auth.SteamUser
+	}{
+		User: user,
+	}
+
+	err := templates.ExecuteTemplate(w, "privacy.html", data)
+	if err != nil {
+		log.Printf("Template execution error: %v", err)
+		return
+	}
+}
+
+// In the main function, add these routes
 func main() {
 	// Create a file server to serve static files from the "static" directory
 	fs := http.FileServer(http.Dir("static"))
@@ -128,6 +165,8 @@ func main() {
 	http.HandleFunc("/login", auth.HandleSteamLogin)
 	http.HandleFunc("/logout", logoutHandler)
 	http.HandleFunc("/search", searchHandler)
+	http.HandleFunc("/terms", termsHandler)
+	http.HandleFunc("/privacy", privacyHandler)
 
 	// Start the server
 	port := os.Getenv("PORT")
