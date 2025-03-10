@@ -3,11 +3,13 @@ body, html {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
+    background-color: #363333;
+    color: #F6E9E9;
 }
 
 /* Header and navigation styling */
 header {
-    background-color: #1b2838;
+    background-color: #272121;
     padding: 10px 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
@@ -36,7 +38,7 @@ header {
 }
 
 .nav-left a:hover {
-    background-color: #2a3f5a;
+    background-color: #363333;
 }
 
 .logo {
@@ -66,27 +68,28 @@ header {
     padding: 8px 12px;
     border: none;
     border-radius: 4px 0 0 4px;
-    background-color: #316282;
-    color: white;
+    background-color: #363333;
+    color: #F6E9E9;
     outline: none;
 }
 
 .search-input::placeholder {
-    color: #c7d5e0;
+    color: #F6E9E9;
+    opacity: 0.7;
 }
 
 .search-button {
-    background-color: #66c0f4;
+    background-color: #E16428;
     border: none;
     border-radius: 0 4px 4px 0;
     padding: 0 15px;
-    color: #1b2838;
+    color: #F6E9E9;
     cursor: pointer;
     transition: background-color 0.2s;
 }
 
 .search-button:hover {
-    background-color: #7ccff8;
+    background-color: #f07539;
 }
 
 .nav-right {
@@ -99,19 +102,19 @@ header {
     display: flex;
     align-items: center;
     gap: 10px;
-    color: #ffffff;
+    color: #F6E9E9;
 }
 
 .avatar {
     width: 32px;
     height: 32px;
     border-radius: 50%;
-    border: 2px solid #66c0f4;
+    border: 2px solid #E16428;
 }
 
 .logout-btn {
-    background-color: #c23c2a;
-    color: white;
+    background-color: #E16428;
+    color: #F6E9E9;
     padding: 6px 12px;
     border-radius: 4px;
     text-decoration: none;
@@ -120,7 +123,7 @@ header {
 }
 
 .logout-btn:hover {
-    background-color: #a33023;
+    background-color: #f07539;
 }
 
 .login-btn img {
@@ -130,4 +133,233 @@ header {
 
 .login-btn:hover img {
     transform: scale(1.05);
+}
+
+
+/* Footer Styling */
+/* Make sure the body takes up at least the full viewport height */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Minimum height is the full viewport height */
+}
+
+/* Main content should grow to push footer down */
+main {
+    flex: 1 0 auto;
+}
+
+/* Footer Styling - updated to be smaller and sticky */
+.site-footer {
+    background-color: #272121;
+    color: #F6E9E9;
+    padding: 15px 0;
+    margin-top: 20px;
+    flex-shrink: 0; /* Prevent footer from shrinking */
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-links ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 10px 0;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.footer-links li {
+    margin: 0 12px;
+}
+
+.footer-links a {
+    color: #F6E9E9;
+    text-decoration: none;
+    font-size: 13px;
+    transition: color 0.2s;
+}
+
+.footer-links a:hover {
+    color: #E16428;
+}
+
+.footer-social {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.footer-social a {
+    color: #F6E9E9;
+    font-size: 18px; /* Smaller icons */
+    transition: color 0.2s;
+}
+
+.footer-social a:hover {
+    color: #E16428;
+}
+
+.footer-copyright {
+    text-align: center;
+    font-size: 11px;
+    color: #F6E9E9;
+    opacity: 0.7;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .footer-links ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .footer-links li {
+        margin: 5px 0;
+    }
+}
+
+
+/* Legal pages styling (Terms of Service and Privacy Policy) */
+.legal-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    color: #F6E9E9;
+}
+
+.legal-container h1 {
+    color: #F6E9E9;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.legal-section {
+    margin-bottom: 30px;
+}
+
+.legal-section h2 {
+    color: #E16428;
+    margin-bottom: 15px;
+    font-size: 1.4em;
+}
+
+.legal-section p {
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.legal-section ul {
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+
+.legal-section li {
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+/* Add these responsive styles */
+
+/* Base responsive settings */
+* {
+    box-sizing: border-box;
+}
+
+/* Responsive container */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Responsive navigation */
+@media (max-width: 768px) {
+    .main-nav {
+        flex-direction: column;
+        padding: 10px 0;
+    }
+    
+    .nav-left {
+        width: 100%;
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+    
+    .search-container {
+        max-width: 100%;
+        margin: 10px 0;
+    }
+    
+    .nav-right {
+        width: 100%;
+        justify-content: center;
+        margin-top: 10px;
+    }
+    
+    .logout-btn {
+        margin-left: 10px;
+    }
+}
+
+/* Smaller mobile devices */
+@media (max-width: 480px) {
+    .nav-left {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+    
+    .nav-left a {
+        padding: 6px 8px;
+        font-size: 14px;
+    }
+    
+    .search-input {
+        padding: 6px 8px;
+    }
+    
+    .search-button {
+        padding: 0 10px;
+    }
+    
+    .user-info {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .avatar {
+        margin-bottom: 5px;
+    }
+    
+    .footer-social {
+        gap: 10px;
+    }
+}
+
+/* Ensure content has proper padding */
+main {
+    padding: 20px 15px;
+}
+
+/* Make images responsive */
+img {
+    max-width: 100%;
+    height: auto;
 }
