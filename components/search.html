@@ -1,0 +1,17 @@
+{{template "header" .}}
+    
+<main class="search-results">
+    <h1>Search Results for: {{.Query}}</h1>
+    
+    {{if .Results}}
+        <ul class="results-list">
+            {{range .Results}}
+                <li class="result-item">{{.}}</li>
+            {{end}}
+        </ul>
+    {{else}}
+        <p class="no-results">No results found for "{{.Query}}"</p>
+    {{end}}
+</main>
+
+{{template "footer" .}}

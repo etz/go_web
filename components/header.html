@@ -2,18 +2,40 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{{.Title}}</title>
+    <title>Mist</title>
     <link rel="stylesheet" href="/static/css/style.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
     <header>
-        <nav>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/about">About</a></li>
-                <li><a href="/contact">Contact</a></li>
-            </ul>
+        <nav class="main-nav">
+            <div class="nav-left">
+                <a href="/" class="logo"><img src="/static/images/logo-128.png" height="48"></a>
+            </div>
+            
+            <div class="search-container">
+                <form action="/search" method="GET" class="search-form">
+                    <input type="text" name="q" placeholder="Search..." class="search-input">
+                    <button type="submit" class="search-button">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </form>
+            </div>
+            
+            <div class="nav-right">
+                {{if .User}}
+                    <div class="user-info">
+                        <img src="{{.User.AvatarMedium}}" alt="{{.User.PersonaName}}" class="avatar">
+                        <span>{{.User.PersonaName}}</span>
+                        <a href="/logout" class="logout-btn">Logout</a>
+                    </div>
+                {{else}}
+                    <a href="/login" class="login-btn">
+                        <img src="/static/images/steam_login.png" alt="Login with Steam">
+                    </a>
+                {{end}}
+            </div>
         </nav>
     </header>
 {{end}}

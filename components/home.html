@@ -1,58 +1,24 @@
 {{template "header" .}}
     
 <main>
-    <h1>{{.Title}}</h1>
-    <p>{{.Content}}</p>
+    <h1>Welcome to My Website</h1>
     
-    <div class="dynamic-content">
-        <h2>Server-rendered Dynamic Content</h2>
-        <p>Current server time: <strong>{{.CurrentTime}}</strong></p>
-        
-        <h3>List of Items:</h3>
-        <ul>
-            {{range .Items}}
-                <li>{{.}}</li>
-            {{end}}
-        </ul>
-        
-        <h3>User Information:</h3>
-        {{with .User}}
-            <p>Name: {{.Name}}</p>
-            <p>Email: {{.Email}}</p>
-            <p>Role: {{.Role}}</p>
-        {{end}}
-    </div>
+    {{if .User}}
+        <div class="user-profile">
+            <h2>Welcome, {{.User.PersonaName}}!</h2>
+            <div class="profile-info">
+                <img src="{{.User.AvatarMedium}}" alt="{{.User.PersonaName}}'s avatar">
+                <p>Steam ID: {{.User.SteamID}}</p>
+                <p><a href="{{.User.ProfileURL}}" target="_blank">View Steam Profile</a></p>
+            </div>
+        </div>
+    {{else}}
+        <p>Please <a href="/login">login with Steam</a> to see your profile information.</p>
+    {{end}}
     
-    <div class="ajax-content">
-        <h2>Client-side Dynamic Content</h2>
-        <p>Current time (updated every second): <strong id="live-time">Loading...</strong></p>
-        <button id="refresh-btn">Refresh Time</button>
+    <div class="content">
+        <p>This is the home page created with Go templates!</p>
     </div>
 </main>
-
-<script>
-    // AJAX example to fetch time from server
-    function updateTime() {
-        $.ajax({
-            url: '/api/time',
-            method: 'GET',
-            success: function(data) {
-                $('#live-time').text(data.time);
-            },
-            error: function(err) {
-                console.error('Error fetching time:', err);
-            }
-        });
-    }
-    
-    // Update time immediately and then every second
-    updateTime();
-    setInterval(updateTime, 1000);
-    
-    // Manual refresh button
-    $('#refresh-btn').click(function() {
-        updateTime();
-    });
-</script>
 
 {{template "footer" .}}
